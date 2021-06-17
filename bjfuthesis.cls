@@ -35,7 +35,7 @@
 	\bjfu@error{XeLaTeX is required to compile this document}
 \fi
 
-\LoadClass[a4paper,UTF8,zihao=-4,oneside,AutoFakeBold,scheme=plain]{ctexbook}[2018/04/01]
+\LoadClass[a4paper,UTF8,zihao=5,oneside,AutoFakeBold,scheme=plain]{ctexbook}[2018/04/01]
 
 % 引用的宏包和相应的定义
 % bjfusetup
@@ -115,7 +115,11 @@
 	keywords,
 	keywords* = {
 			name = keywords@en,
-		},
+	},
+	title,
+	class,
+	author,
+	advisorname
 }
 
 \newcommand\bjfu@clist@use[2]{%
@@ -225,10 +229,10 @@
 % 
 \geometry{
 	paper = a4paper,  % 210 * 297mm
-	top = 3.0cm,
+	top = 2.5cm,
 	bottom=2.5cm,
 	left = 3.0cm,
-	right = 2.5cm,
+	right = 2.0cm,
 	footskip = 1.0cm,
 }
 %字体
@@ -242,20 +246,21 @@
 
 
 %定义页眉和页脚
-\pagestyle{fancy}
-\renewcommand\headrulewidth{0.75bp}%
-\fancypagestyle{plain}{%
-	\fancyhf{}%
+% \pagestyle{fancy}
 
-	\fancyhead[C]{%
-		\xiaowu
-		\songti
-		北京林业大学本科毕业论文
-	}
-	\fancyfoot[C]{\wuhao\thepage}%
-	\headheight  0.5cm
-	\headsep  1.1cm
-}
+% \renewcommand\headrulewidth{0.75bp}%
+% \fancypagestyle{plain}{%
+% 	\fancyhf{}%
+
+% 	% \fancyhead[C]{
+% 		% \xiaowu
+% 		% \songti
+% 		% 北京林业大学本科毕业论文
+% 	% }
+% 	% \fancyfoot[C]{\wuhao\thepage}%
+% 	\headheight  0.5cm
+% 	\headsep  1.1cm
+% }
 \pagestyle{plain}
 
 
@@ -264,6 +269,7 @@
 \bjfu@name@def{abstract@en}{Abstract}
 \bjfu@name@def{keywords@zh}{关键词：}
 \bjfu@name@def{keywords@en}{Keywords:~}
+\bjfu@name@def{advisor}{指导教师}
 \bjfu@name@def{appendix}{附录}
 \bjfu@name@def{contents}{目\hspace{\ccwd}录}
 %      listfigure        = {插图索引},
@@ -288,6 +294,7 @@
 	chapter = {
 	  name   = {,}, %{第,章}
 	  number = \thechapter,
+	  break = {}
 	 },
 }
 \ctexset{%
@@ -312,7 +319,6 @@
 	  nameformat   = {},
 	  numberformat = {},
 	  titleformat  = {},
-	  fixskip      = true,
 	  aftername    = \quad,
 	  afterindent  = true,
 	  lofskip      = 0pt,
@@ -337,7 +343,7 @@
 
 \ctexset{%
 	chapter = {%
-	  format       = \xiaosan\bfseries\songti\centering,
+	  format       = \sihao\bfseries\songti\centering,
 	  nameformat   = {},
 	  titleformat  = {},
 	  aftername    = \quad,
@@ -345,51 +351,40 @@
 	  afterskip    = 0.5\baselineskip,
 	 },
 	section = {%
-	  format       = \sihao\bfseries\songti,
+	  format       = \xiaosi\bfseries\songti,
 	  beforeskip   = 0.5\baselineskip,
 	 },
 	subsection = {%
-			format       = \xiaosi\bfseries\songti,
+			format       = \wuhao\bfseries\songti,
 		},
 	subsubsection = {%
-			format       = \xiaosi\songti,
+			format       = \wuhao\songti,
 		},
 }
 %中文摘要
 \newenvironment{abstract}{%
 	\begin{center}
-		\songti \sanhao \bfseries
-		\bjfu@name@abstract@zh
-	\end{center}
-	\xiaosi \kaishu
-	\par
-}{
-	\par
-	\null\par
-	\noindent
-	\xiaosi \songti
-	\textbf{\bjfu@name@keywords@zh}%
-	\bjfu@clist@use{\bjfu@keywords}{，}%
-	\clearpage
-}
-%英文摘要
-\newenvironment{abstract*}{%
-	\begin{center}
-		\centering\sanhao\bfseries
-		\bjfu@name@abstract@en
-	\end{center}
-	\xiaosi
-	\ctexset{autoindent=0.8cm}%
-	\par
+		\heiti \xiaosan \textbf{\bjfu@title}
+		\vspace{0.5em} \noindent % 段后0.5行
+		\par
 
-}{
+		\songti \xiaosi
+		\bjfu@class \ \ 
+		\bjfu@author \ \ \ \ 
+		\bjfu@name@advisor \ \ 
+		\bjfu@advisorname
+		\vspace{0.5em} \noindent % 段后0.5行
+		\par
+		\songti \sihao \textbf{\bjfu@name@abstract@zh}
+	\end{center}
+	
+	\wuhao \kaishu
 	\par
-	\null\par
+}{
 	\noindent
-	\xiaosi
-	\textbf{\bjfu@name@keywords@en}%
-	\bjfu@clist@use{\bjfu@keywords@en}{,~}%
-	\clearpage
+	\wuhao \kaishu
+	\textbf{\bjfu@name@keywords@zh}%
+	\textbf{\bjfu@clist@use{\bjfu@keywords}{，}}%
 }
 %目录
 
